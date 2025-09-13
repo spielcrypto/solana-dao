@@ -112,6 +112,7 @@ cargo run
 - `/login` - Create or access your Solana account (automatic wallet generation)
 - `/account` - Show your account information and wallet details
 - `/balance` - Show your SOL balance
+- `/fundaccount` - Fund your account with SOL for voting (development only)
 
 ### Group Management (Admin Only)
 - `/creategroup "name" "description"` - Create a new DAO group
@@ -121,12 +122,12 @@ cargo run
 ### Proposal Management (Admin Only)
 - `/createproposal <title> <description> <choices> <duration_hours>` - Create a new proposal
   - Example: `/createproposal "Budget Allocation" "How should we allocate the budget?" "Marketing,Development,Operations" 48`
-- `/listproposals <group_id>` - List proposals for a group
+- `/listproposals` - List proposals for current group
 
 ### Voting (All Users)
-- `/vote <group_id> <proposal_id> <choice_number>` - Vote on a proposal
-  - Example: `/vote group-uuid-here proposal-uuid-here 1` (vote for choice 1)
-- `/results <group_id> <proposal_id>` - View proposal results
+- `/vote <proposal_id> <choice_number>` - Vote on a proposal
+  - Example: `/vote proposal-uuid-here 1` (vote for choice 1)
+- `/results <proposal_id>` - View proposal results
 
 ## Usage Examples
 
@@ -151,7 +152,16 @@ Bot: 💰 Your SOL Balance
      🔗 View on Explorer: https://explorer.solana.com/address/9fAcbMc9eBNYnRPe2mRvSFsKDxssVfkQp6wfoT5rjFy6?cluster=localnet
 ```
 
-### 3. Creating a DAO Group
+### 3. Fund Account (Development)
+```
+User: /fundaccount
+Bot: ✅ Account funded successfully!
+     💰 New balance: 0.010000 SOL
+     🔗 Transaction: https://explorer.solana.com/tx/...?cluster=localnet
+     💡 You can now vote on proposals!
+```
+
+### 4. Creating a DAO Group
 ```
 Admin: /creategroup "My DAO" "A DAO for managing our community decisions"
 Bot: ✅ DAO Group created successfully!
@@ -159,7 +169,7 @@ Bot: ✅ DAO Group created successfully!
      📝 Description: A DAO for managing our community decisions
 ```
 
-### 4. Listing Groups
+### 5. Listing Groups
 ```
 User: /listgroups
 Bot: 📋 DAO Groups:
@@ -167,7 +177,7 @@ Bot: 📋 DAO Groups:
         📝 A DAO for managing our community decisions
 ```
 
-### 5. Creating a Proposal
+### 6. Creating a Proposal
 ```
 Admin: /createproposal "Budget Allocation" "How should we allocate the budget?" "Marketing,Development,Operations" 48
 Bot: ✅ Proposal created successfully!
@@ -181,9 +191,9 @@ Bot: ✅ Proposal created successfully!
      2. Operations
 ```
 
-### 6. Voting on a Proposal
+### 7. Voting on a Proposal
 ```
-User: /vote group-uuid-here proposal-uuid-here 1
+User: /vote proposal-uuid-here 1
 Bot: ✅ Vote cast successfully!
      🗳️ Proposal: proposal-uuid-here
      ✔️ Your choice: 1
